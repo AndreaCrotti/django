@@ -320,6 +320,9 @@ class DefaultFiltersTests(TestCase):
         self.assertEqual(urlize('http://[2001:db8:cafe::2]/api/9'),
             '<a href="http://[2001:db8:cafe::2]/api/9" rel="nofollow">http://[2001:db8:cafe::2]/api/9</a>')
 
+        # Check urlize works with does not raise a ValueError anymore
+        self.assertEqual(urlize('[http://168.192.0.1](http://168.192.0.1)'), u'[<a href="http://168.192.0.1](http://168.192.0.1)" rel="nofollow">http://168.192.0.1](http://168.192.0.1)</a>')
+
     def test_wordcount(self):
         self.assertEqual(wordcount(''), 0)
         self.assertEqual(wordcount('oneword'), 1)
