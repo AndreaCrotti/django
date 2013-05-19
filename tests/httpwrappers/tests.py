@@ -403,6 +403,12 @@ class HttpResponseTests(unittest.TestCase):
             self.assertRaises(SuspiciousOperation,
                               HttpResponsePermanentRedirect, url)
 
+    def test_http_response_rewinds_if_passing_a_string(self):
+        ht = HttpResponse(content=u'Something')
+        self.assertEqual(list(ht), [u'Something'])
+        self.assertEqual(list(ht), [u'Something'])
+
+
 class HttpResponseSubclassesTests(TestCase):
     def test_redirect(self):
         response = HttpResponseRedirect('/redirected/')
